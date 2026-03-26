@@ -9,6 +9,7 @@ def index():
     link +="<a href = /today>現在日期時間</a><hr>"
     link +="<a href = /me>關於我</a><hr>"
     link +="<a href = /welcome?suga=羿慧&d=靜宜資管&c=資訊管理導論>Get傳值</a><hr>"
+    link += "<a href=/account>網頁表單傳值</a><br>"
     return link
 @app.route("/mis")
 def course():
