@@ -8,11 +8,11 @@ def index():
     link +="<a href = /mis>課程</a><hr>"
     link +="<a href = /today>現在日期時間</a><hr>"
     link +="<a href = /me>關於我</a><hr>"
+    link +="<a href = /welcome?suga=羿慧&d=靜宜資管&c=資訊管理導論>Get傳值</a><hr>"
     return link
-
 @app.route("/mis")
 def course():
-    return "<h1>資訊管理導論</h1>"
+    return "<h1>資訊管理導論</h1><a href=/>返回首頁<a>"
 
 @app.route("/today")
 def today():
@@ -23,6 +23,23 @@ def today():
 def me():
     now = datetime.now()
     return render_template("mis2026b.html")
+
+@app.route("/welcome", methods=["GET"])
+def welcome():
+    user = request.values.get("suga")
+    d =request.values.get("d")
+    c =request.values.get("c")
+    return render_template("welcome.html", name = user, dep = d, course = c)
+
+@app.route("/account", methods=["GET", "POST"])
+def account():
+    if request.method == "POST":
+        user = request.form["user"]
+        pwd = request.form["pwd"]
+        result = "您輸入的帳號是：" + user + "; 密碼為：" + pwd 
+        return result
+    else:
+        return render_template("account.html")
 
 
 if __name__ == "__main__":
